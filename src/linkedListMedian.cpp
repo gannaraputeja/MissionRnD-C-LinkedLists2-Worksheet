@@ -19,6 +19,31 @@ struct node {
 	struct node *next;
 };
 
-int linkedListMedian(struct node *head) {
-	return -1;
+int linkedListMedian(struct node *head) 
+{
+	if (head == NULL)
+		return -1;
+	int sum = 0,count=0;
+	struct node *newhead = head;
+	while (head != NULL)
+	{
+		sum+=head->num;
+		count++;
+		head = head->next;
+	}
+	if (count % 2 == 0)
+	{
+		sum /= count;
+		return sum;
+	}
+	else
+	{
+		count /= 2;
+		while (count)
+		{
+			newhead = newhead->next;
+			count--;
+		}
+		return newhead->num;
+	}
 }
